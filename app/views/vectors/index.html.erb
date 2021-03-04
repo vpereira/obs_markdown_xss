@@ -1,0 +1,3 @@
+<% @xss_vectors.each do |xss_vector| %>
+<%= @raw ? xss_vector.vector.html_safe : render_as_markdown(xss_vector.vector.html_safe) %>
+<% end %>

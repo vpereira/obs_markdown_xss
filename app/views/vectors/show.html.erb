@@ -1,0 +1,20 @@
+<%= javascript_pack_tag 'xss_vector_show', defer: 'defer' %>
+
+<%= @raw ? @xss_vector.vector.html_safe : '' %>
+
+<div class="space-y-4 p-2 ">
+<label>Vector:</label>
+<%= content_tag(:code, id: 'xssvector', class:'block bg-black text-white language-html w-96', data: {xssvectorid: @xss_vector.id}) do %>
+    <%= @xss_vector.vector.inspect %>
+<% end %>
+
+<label>Vector parsed by our engine:</label>
+<%= content_tag(:code, id: 'parsedvector', class:'block bg-black text-white language-html w-96') do %>
+    <%= render_as_markdown(@xss_vector.vector) %>
+<% end %>
+
+
+<p class="text-sm text-gray-500">
+    Raw: <%= check_box_tag :raw, @raw.to_s, @raw, id: 'changeraw' %>
+</p>
+</div>
